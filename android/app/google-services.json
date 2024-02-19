@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "473743969289",
+    "firebase_url": "https://bigshow-32ef4-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "bigshow-32ef4",
+    "storage_bucket": "bigshow-32ef4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:473743969289:android:d74dcce57739d08bae3cd8",
+        "android_client_info": {
+          "package_name": "com.example.bigshow"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyClSloBWsA8ATWDtGno0B_bhGaBbUR5Lcw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
