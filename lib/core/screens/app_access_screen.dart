@@ -1,7 +1,10 @@
+import 'package:bigshow/core/screens/home_screen.dart';
 import 'package:bigshow/core/screens/splash_screen.dart';
+import 'package:bigshow/data/local/local_storage.dart';
 import 'package:bigshow/utils/constants/others.dart';
 import 'package:bigshow/utils/constants/strings.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AppAccessScreen extends StatefulWidget {
   final bool showUpdate;
@@ -13,6 +16,8 @@ class AppAccessScreen extends StatefulWidget {
 }
 
 class _AppAccessScreenState extends State<AppAccessScreen> {
+  LocalStorage localStorage = LocalStorage();
+
   @override
   void initState() {
     // TODO: implement initState
@@ -23,6 +28,7 @@ class _AppAccessScreenState extends State<AppAccessScreen> {
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
+    LocalStorage localStorage = LocalStorage();
     return Scaffold(
       body: Column(
         children: [
@@ -41,10 +47,12 @@ class _AppAccessScreenState extends State<AppAccessScreen> {
             child: Column(
               children: [
                 ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () async {
+                      await launchUrl(Uri.parse(localStorage.appInfo.link!));
+                    },
                     child: const Text(AppsStrings.updateBtnTxt)),
                 Center(
-                    child: Text("${AppsStrings.appVersion} 0.0.1",
+                    child: Text("${AppsStrings.appVersion} ${localStorage.appInfo.version}",
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
                             color: Theme.of(context).colorScheme.secondary))),
                 Center(
@@ -57,7 +65,7 @@ class _AppAccessScreenState extends State<AppAccessScreen> {
           Visibility(
             visible: !widget.showUpdate,
             child: Center(
-                child: Text("${AppsStrings.appVersion} 0.0.1",
+                child: Text("${AppsStrings.appVersion} ${localStorage.appInfo.version}",
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: Theme.of(context).colorScheme.secondary))),
           ),
@@ -70,13 +78,23 @@ class _AppAccessScreenState extends State<AppAccessScreen> {
   /*--------------> Screen Changing Function <----------------*/
   void changeScreen() {
     if (!widget.showUpdate) {
-      Future.delayed(
-        AppsOthersConst.changeScreenTime,
-        () {
-          Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) => const SplashScreen()));
-        },
-      );
+      if(localStorage.logged){
+        Future.delayed(
+          AppsOthersConst.changeScreenTime,
+              () {
+            Navigator.pushReplacement(context,
+                MaterialPageRoute(builder: (context) => const HomeScreen()));
+          },
+        );
+      } else {
+        Future.delayed(
+          AppsOthersConst.changeScreenTime,
+              () {
+            Navigator.pushReplacement(context,
+                MaterialPageRoute(builder: (context) => const SplashScreen()));
+          },
+        );
+      }
     }
   }
 }
