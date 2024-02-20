@@ -11,4 +11,12 @@ class AppsStrings {
   static const noConnectionMsg = "You are not connected with internet!\nPlease connect your internet to continue!";
   static const checkingConnectionMsg = "Please be patient!\nWe are checking your internet connection!";
   static const checkingVersionMsg = "Please be patient!\nWe are checking app information!";
+  static const bollyTitle = "Watch Bollywood Movies";
+  static const bollySubTitle = "All bollywood movies are available here!";
+  static const hollyTitle = "Watch Hollywood Movies";
+  static const hollySubTitle = "All Hollywood movies are available here!";
+  static const vdoPlyTxt = "Watch Now";
+  static const vdoFavTxt = "Watch Later";
+  static const favAppbarTitle = "Favorite Items";
+  static const emptyTxt = "Empty Favorite List";
 }

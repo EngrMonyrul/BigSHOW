@@ -10,6 +10,7 @@ class AppsColorScheme {
     error: Colors.red,
     primary: Colors.red,
     secondary: Colors.black,
+    onSecondary: Colors.white,
     shadow: Colors.black12,
   );
 
@@ -20,6 +21,7 @@ class AppsColorScheme {
     error: Colors.red,
     primary: Colors.red,
     secondary: Colors.white,
+    onSecondary: Colors.black,
     shadow: Colors.black12,
   );
 }

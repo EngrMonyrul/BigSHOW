@@ -5,6 +5,7 @@ import 'package:bigshow/utils/constants/others.dart';
 import 'package:bigshow/utils/constants/sizes.dart';
 import 'package:bigshow/utils/constants/strings.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:provider/provider.dart';
 
@@ -24,6 +25,7 @@ class _AppStartingPageState extends State<AppStartingPage> {
   void initState() {
     // TODO: implement initState
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
       checkInternetConnection();
     });
     super.initState();
@@ -91,16 +93,14 @@ class _AppStartingPageState extends State<AppStartingPage> {
 
   /*-----------> Check App Version <--------------*/
   void checkAppVersion() {
-    final homePageProvider =
-        Provider.of<HomeScreenProvider>(context, listen: false);
+    final homePageProvider = Provider.of<HomeScreenProvider>(context, listen: false);
     homePageProvider.checkingAppVersion();
-    checkInternetConnection();
+    homePageProvider.fetchVideos();
   }
 
   /*-----------> Check Internet Connection <--------------*/
   void checkInternetConnection() async {
-    final internetConnectionChecker =
-        InternetConnectionChecker().onStatusChange.listen((event) {
+    final internetConnectionChecker = InternetConnectionChecker().onStatusChange.listen((event) {
       switch (event) {
         case InternetConnectionStatus.connected:
           setState(() {
@@ -118,7 +118,7 @@ class _AppStartingPageState extends State<AppStartingPage> {
       }
     });
 
-    await Future.delayed(AppsOthersConst.connectionCheckingDelay);
-    await internetConnectionChecker.cancel();
+    // await Future.delayed(AppsOthersConst.connectionCheckingDelay);
+    // await internetConnectionChecker.cancel();
   }
 }
