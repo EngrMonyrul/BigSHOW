@@ -1,3 +1,4 @@
+import 'package:bigshow/common/const_files/const.dart';
 import 'package:bigshow/core/providers/home_screen_provider.dart';
 import 'package:bigshow/core/screens/favorite_screen.dart';
 import 'package:bigshow/core/screens/search_screen.dart';
@@ -12,6 +13,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+
+import '../../common/widgets/category_video.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -41,6 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
               return const Center(child: CircularProgressIndicator());
             } else {
               return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(
                     height: screenSize.height * .45,
@@ -181,6 +185,28 @@ class _HomeScreenState extends State<HomeScreen> {
                       ],
                     ),
                   ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 20),
+                    child: SizedBox(
+                      height: screenSize.height * .04,
+                      width: screenSize.width,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: AppsConst.videoCategory.length,
+                        itemBuilder: (context, index) {
+                          final item = AppsConst.videoCategory[index];
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 2.0),
+                            child: ElevatedButton(onPressed: (){}, child: Text(item)),
+                          );
+                        },
+                      ),
+                    ),
+                  ),
+                  CategoryVideo(screenSize: screenSize, label: "New Release", videoList: child.pexelsVideos.videos!),
+                  CategoryVideo(screenSize: screenSize, label: "Hollywood", videoList: child.pexelsVideos.videos!),
+                  CategoryVideo(screenSize: screenSize, label: "Bollywood", videoList: child.pexelsVideos.videos!),
+                  CategoryVideo(screenSize: screenSize, label: "Others", videoList: child.pexelsVideos.videos!),
                 ],
               );
             }
@@ -190,3 +216,4 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
+

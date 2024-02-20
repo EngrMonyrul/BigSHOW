@@ -21,4 +21,6 @@ class AppsConst {
       "subTitle": AppsStrings.hollySubTitle,
     },
   ];
+
+  static final videoCategory = ["All", "Sci-Fi", "Comedy", "Romantic", "Action", "Emotion", "Others"];
 }

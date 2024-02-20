@@ -118,7 +118,7 @@ class _AppStartingPageState extends State<AppStartingPage> {
       }
     });
 
-    // await Future.delayed(AppsOthersConst.connectionCheckingDelay);
-    // await internetConnectionChecker.cancel();
+    await Future.delayed(AppsOthersConst.connectionCheckingDelay);
+    await internetConnectionChecker.cancel();
   }
 }
